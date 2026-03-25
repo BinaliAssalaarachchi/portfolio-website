@@ -66,7 +66,7 @@ export default function AIAssistant() {
       },
       {
         keywords: ["certificate", "cert", "achievement"],
-        section: "certs",
+        section: "certificates",
         answer:
           "Here are my certifications related to technology and AI learning."
       },
