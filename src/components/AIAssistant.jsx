@@ -2,21 +2,21 @@ import { useMemo, useState } from "react";
 import robot from "../assets/robot.png";
 
 export default function AIAssistant() {
+
   const presets = useMemo(
     () => [
-      { label: "Show my AI/ML project", q: "Tell me about your AI/ML project" },
-      { label: "What tech do you use?", q: "What is your tech stack?" },
-      { label: "Best projects to view first", q: "Which projects should I check first?" },
+      { label: "Show my AI/ML project", q: "ai project" },
+      { label: "What tech do you use?", q: "tech stack" },
+      { label: "Best projects to view first", q: "best projects" },
     ],
     []
   );
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState(
-    "Hi! I’m your portfolio assistant. Ask me about projects, skills, or my AI work."
+    "Hi! I'm Binali's AI portfolio assistant. Ask me about projects, skills, AI work, or certifications."
   );
 
-  // Robot reaction state
   const [reacting, setReacting] = useState(false);
 
   function triggerRobotReact() {
@@ -24,86 +24,114 @@ export default function AIAssistant() {
     window.setTimeout(() => setReacting(false), 700);
   }
 
+  // smooth scroll function
+  function goTo(id) {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   function respond(qRaw) {
     const q = (qRaw || "").trim();
     if (!q) return;
 
     triggerRobotReact();
-
     const text = q.toLowerCase();
 
-    if (text.includes("ai") || text.includes("ml") || text.includes("machine")) {
-      setAnswer(
-        "My key AI-focused work is the Student Performance Prediction & Study Schedule project. Built with Python + ML, and integrated with backend + database."
-      );
-      return;
+    const intents = [
+      {
+        keywords: ["ai", "ml", "machine", "model"],
+        section: "projects",
+        answer:
+          "Here is my AI/ML project: Student Performance Prediction with Study Schedule generation. Scroll to the Projects section to explore it."
+      },
+      {
+        keywords: ["project", "work", "portfolio", "build"],
+        section: "projects",
+        answer:
+          "Scrolling to my Projects section where you can explore my AI system, Travel Itinerary Planner, and Java modules."
+      },
+      {
+        keywords: ["best", "recommend", "first"],
+        section: "projects",
+        answer:
+          "I recommend starting with my AI project, then the Travel Itinerary Planning system, and finally the Java-based modules."
+      },
+      {
+        keywords: ["tech", "stack", "skill", "technology", "tools"],
+        section: "skills",
+        answer:
+          "My main technologies include React, Python, Flask, MySQL, Java, and C. I'm particularly interested in AI-driven systems."
+      },
+      {
+        keywords: ["certificate", "cert", "achievement"],
+        section: "certs",
+        answer:
+          "Here are my certifications related to technology and AI learning."
+      },
+      {
+        keywords: ["about", "background", "who are you"],
+        section: "about",
+        answer:
+          "Scrolling to the About section where you can learn more about my background and interests in AI and software engineering."
+      },
+      {
+        keywords: ["contact", "hire", "reach", "email"],
+        section: "contact",
+        answer:
+          "You can reach me through the Contact section below. I'm open to collaborations and opportunities."
+      }
+    ];
+
+    for (const intent of intents) {
+      if (intent.keywords.some((k) => text.includes(k))) {
+        goTo(intent.section);
+        setAnswer(intent.answer);
+        return;
+      }
     }
 
-    if (text.includes("tech") || text.includes("stack") || text.includes("tools")) {
-      setAnswer(
-        "Tech highlights: React (frontend), Python + Flask (backend), MySQL/SQL (databases), plus Java & C from university modules."
-      );
-      return;
-    }
-
-    if (text.includes("first") || text.includes("best") || text.includes("recommend")) {
-      setAnswer(
-        "Start with: (1) AI project (Student Performance Prediction), (2) Travel Itinerary + Booking system (React + Flask), (3) Java modules (Order/Payment) for SE skills."
-      );
-      return;
-    }
-
-    if (text.includes("contact") || text.includes("hire")) {
-      setAnswer("You can reach me from the Contact section below — I’m open to collaboration and opportunities.");
-      return;
-    }
-
-    setAnswer("Try asking: “Show my AI/ML project” or “What tech do you use?”");
+    setAnswer(
+      "I can help you explore my portfolio. Try asking about projects, skills, AI work, or certifications."
+    );
   }
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-br from-[#0f172a] via-[#0b1220] to-[#070B14] p-6 shadow-[0_0_40px_rgba(59,130,246,0.16)]">
-      {/* Tech grid / dots background */}
-      <div className="pointer-events-none absolute inset-0 opacity-25">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.35)_1px,transparent_1px)] [background-size:22px_22px]" />
-      </div>
-
-      {/* Scan line */}
-      <div className="pointer-events-none absolute inset-x-0 -top-10 h-24 animate-scan bg-gradient-to-b from-transparent via-blue-500/10 to-transparent blur-sm" />
-
-      {/* Glow corners */}
-      <div className="pointer-events-none absolute -left-24 -top-24 h-48 w-48 rounded-full bg-blue-500/15 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 -bottom-24 h-48 w-48 rounded-full bg-cyan-400/10 blur-3xl" />
 
       <div className="relative z-10">
-        {/* Header with robot avatar */}
+
+        {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* robot avatar */}
+
             <div
               className={[
                 "grid h-10 w-10 place-items-center rounded-full border border-blue-500/25 bg-black/30",
-                reacting ? "animate-robotReact shadow-[0_0_25px_rgba(59,130,246,0.45)]" : "",
+                reacting ? "animate-robotReact shadow-[0_0_25px_rgba(59,130,246,0.45)]" : ""
               ].join(" ")}
             >
-              <img
-                src={robot}
-                alt="Robot"
-                className="h-8 w-8 object-contain"
-              />
+              <img src={robot} alt="Robot" className="h-8 w-8 object-contain" />
             </div>
 
             <div>
               <p className="font-semibold text-blue-300 tracking-wide leading-tight">
                 AI Assistant
               </p>
-              <p className="text-xs text-white/45">Prototype • rule-based demo</p>
+              <p className="text-xs text-white/45">
+                Prototype • rule-based demo
+              </p>
             </div>
           </div>
 
-          {/* tiny status dot */}
           <span className="inline-flex items-center gap-2 text-xs text-white/45">
-            <span className={["h-2 w-2 rounded-full bg-blue-400", reacting ? "animate-pulse" : ""].join(" ")} />
+            <span
+              className={[
+                "h-2 w-2 rounded-full bg-blue-400",
+                reacting ? "animate-pulse" : ""
+              ].join(" ")}
+            />
             online
           </span>
         </div>
@@ -113,7 +141,7 @@ export default function AIAssistant() {
           <p className="text-sm text-white/75 leading-relaxed">{answer}</p>
         </div>
 
-        {/* Preset chips */}
+        {/* Preset buttons */}
         <div className="mt-4 flex flex-wrap gap-2">
           {presets.map((p) => (
             <button
@@ -126,7 +154,7 @@ export default function AIAssistant() {
           ))}
         </div>
 
-        {/* Input row */}
+        {/* Input */}
         <div className="mt-5 flex gap-2">
           <input
             value={question}
@@ -140,6 +168,7 @@ export default function AIAssistant() {
             placeholder="Ask about projects, skills, AI..."
             className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-2 text-sm text-white placeholder:text-white/35 outline-none focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/20"
           />
+
           <button
             onClick={() => {
               respond(question);
@@ -154,5 +183,3 @@ export default function AIAssistant() {
     </div>
   );
 }
-
-
