@@ -29,12 +29,12 @@ export default function Skills() {
     <section id="skills" className="mt-16">
       <div className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10 shadow-[0_0_60px_rgba(59,130,246,0.10)]">
         
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="text-white/60 text-sm">Skills</p>
           <h2 className="mt-2 text-2xl md:text-3xl font-bold leading-tight text-blue-400">
             Skills & Strengths
           </h2>
-          <p className="mt-3 max-w-1xl text-white/70 leading-relaxed">
+          <p className="mt-3 max-w-none text-white/70 leading-relaxed">
             A combination of technical expertise and professional strengths developed through academic projects and leadership experiences.
           </p>
         </div>

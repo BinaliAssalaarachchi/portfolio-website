@@ -39,7 +39,7 @@ export default function Extracurricular() {
     <section id="extracurricular" className="mt-20">
       <div className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-12 shadow-[0_0_80px_rgba(139,92,246,0.12)]">
         {/* Header */}
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="text-white/60 text-sm">
             Leadership • Creativity • Community
           </p>
@@ -48,7 +48,7 @@ export default function Extracurricular() {
             Beyond Code
           </h2>
 
-          <p className="mt-5 text-white/70 leading-relaxed">
+          <p className="mt-5 max-w-none text-white/70 leading-relaxed">
             My journey extends beyond technical development. Through leadership
             roles, creative initiatives, and community engagement, I’ve developed
             strategic thinking, coordination, and execution skills.
@@ -145,7 +145,7 @@ function TimelineItem({ title, desc, tags }) {
   );
 }
 
-function HoverCard({ title, desc, tags, image }) {
+function HoverCard({ title, desc, tags }) {
   return (
     <div className="group relative rounded-2xl border border-white/10 bg-black/25 p-7 transition hover:-translate-y-1 hover:border-purple-500/40 hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] overflow-hidden">
       
