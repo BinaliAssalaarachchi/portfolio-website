@@ -23,12 +23,24 @@ const projects = [
     repo: "https://github.com/BinaliAssalaarachchi/trip-planning-system",
   },
   {
-    title: "Driver Dashboard — Travel Planning App",
+    title: "Driver Dashboard — Travel Planning App (Wonderway)",
     meta: "Year 2 Semester 2 • Group Project",
     stack: ["React Native", "MongoDB", "Frontend/Backend deployment"],
     desc:
       "A cross-platform mobile application providing dynamic travel itinerary planning, real-time tracking, and frontend/backend services.",
-    image: "/projects/trip-app.png",
+    image: "/projects/wonderway-home.png",
+    gallery: [
+      "/projects/wonderway-home.png",
+      "/projects/wonderway-profile.png",
+      "/projects/wonderway-trips.png",
+      "/projects/wonderway-fleet.png"
+    ],
+    contributions: [
+      "Developed a cross-platform mobile React Native interface branded as 'Wonderway' tailored for Sri Lankan travel routes.",
+      "Created the mobile 'Driver Profile' screen for managing Kasun Perera's credentials and verified partner status.",
+      "Built the mobile 'Trip Assignments' view featuring LKR pricing and quick accept/decline action buttons.",
+      "Implemented the mobile 'Island Fleet' section showcasing transport options (Prius, KDH Luxury Van) with daily rates."
+    ],
     repo: "https://github.com/BinaliAssalaarachchi/trip-app",
   },
   {
@@ -176,7 +188,7 @@ export default function Projects() {
                       e.stopPropagation();
                       setSelectedProject(p);
                     }}
-                    className="text-xs font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 hover:border-blue-500/30 transition-all"
+                    className="text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded-lg border border-blue-500/30 transition-all shadow-[0_0_12px_rgba(59,130,246,0.25)] hover:shadow-[0_0_18px_rgba(59,130,246,0.4)]"
                   >
                     View Details
                   </button>
