@@ -2,6 +2,36 @@ import { useState, useEffect } from "react";
 
 const projects = [
   {
+    title: "Student Performance Prediction & Customized Study Schedule Generation",
+    meta: "BCS PGD • Individual • Completed & Passed",
+    stack: ["Python (Django)", "Scikit-learn", "Flutter", "MySQL", "API Integration"],
+    desc:
+      "Predicts student performance and generates a personalized study schedule using an ML model + backend APIs.",
+    image: "/projects/student-landing.png",
+    gallery: [
+      "/projects/student-landing.png",
+      "/projects/student-login.png",
+      "/projects/student-register.png",
+      "/projects/student-dashboard.png",
+      "/projects/student-predict.png",
+      "/projects/student-analytics.png",
+      "/projects/student-planner.png",
+      "/projects/student-profile.png",
+      "/projects/student-notifications.png"
+    ],
+    contributions: [
+      "Designed and developed 'SmartStudy', a mobile application focused on AI-powered predictive performance analysis.",
+      "Built the user onboarding workflow including custom registration and login portals using Flutter.",
+      "Implemented the primary 'SmartStudy Dashboard' showing Alex's personalized schedules, weekly progress summary, and action items.",
+      "Integrated machine learning backend services utilizing Python (Django) to process predictive analytics metrics in real-time.",
+      "Developed the 'Progress & Analytics' interface displaying historical performance predictions, task completion status, and log graphs.",
+      "Designed the 'Study Schedule Planner' configuration system for customizing available hours, subject difficulty, and goals.",
+      "Built the 'Profile & Preferences' module tracking personal student information, GPA goals, and specific academic majors.",
+      "Implemented a study alerts framework sending push reminders and scheduled notifications for routine study blocks."
+    ],
+    repo: "https://github.com/BinaliAssalaarachchi/student-performance-prediction-app",
+  },
+  {
     title: "Driver Dashboard — Travel Itinerary Planning & Vehicle Booking System",
     meta: "Year 2 Semester 2 • Group Project",
     stack: ["React.js", "MySQL", "API Integration", "Python (AI component)"],
@@ -42,15 +72,6 @@ const projects = [
       "Implemented the mobile 'Island Fleet' section showcasing transport options (Prius, KDH Luxury Van) with daily rates."
     ],
     repo: "https://github.com/BinaliAssalaarachchi/trip-app",
-  },
-  {
-    title: "Student Performance Prediction & Customized Study Schedule Generation",
-    meta: "BCS PGD • Individual • Completed & Passed",
-    stack: ["Python (Django)", "Scikit-learn", "Flutter", "MySQL", "API Integration"],
-    desc:
-      "Predicts student performance and generates a personalized study schedule using an ML model + backend APIs.",
-    image: "/projects/student.png",
-    repo: "https://github.com/BinaliAssalaarachchi/student-performance-prediction",
   },
   {
     title: "Payment Module & Database — Laundry Management System",
@@ -136,11 +157,15 @@ export default function Projects() {
             >
 
               {/* Image */}
-              <div className="relative h-56 w-full overflow-hidden border-b border-white/10 bg-gradient-to-b from-black/20 to-black/40 p-4 pb-0 flex items-end justify-center">
+              <div className="relative h-56 w-full overflow-hidden border-b border-blue-500/10 bg-zinc-950 flex items-center justify-center p-4">
+                {/* Blue Spotlight Highlight Glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.22),transparent_70%)] pointer-events-none" />
+
+                {/* Actual Sharp Foreground Image */}
                 <img
                   src={p.image}
                   alt={p.title}
-                  className="h-full w-auto object-contain rounded-t-lg opacity-90 shadow-md transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
+                  className="relative z-10 max-h-full max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300 group-hover:scale-[1.04]"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
