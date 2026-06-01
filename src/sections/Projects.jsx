@@ -98,7 +98,6 @@ const projects = [
     desc:
       "Built an order management component with strong object-oriented design and clean modular structure.",
     image: "/projects/order.jpg",
-    repo: "#", // ✅ no code yet
   },
   {
     title: "IoT Water Level Management System",
@@ -192,20 +191,24 @@ export default function Projects() {
 
                 {/* FIXED BUTTON SECTION */}
                 <div className="mt-5 flex items-center justify-between">
-                  {p.repo === "#" ? (
-                    <span className="text-sm font-semibold text-yellow-400">
-                      🚧 Coming Soon
-                    </span>
+                  {p.repo ? (
+                    p.repo === "#" ? (
+                      <span className="text-sm font-semibold text-yellow-400">
+                        🚧 Coming Soon
+                      </span>
+                    ) : (
+                      <a
+                        href={p.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm font-semibold text-blue-300 hover:text-blue-200"
+                      >
+                        GitHub Repo →
+                      </a>
+                    )
                   ) : (
-                    <a
-                      href={p.repo}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-sm font-semibold text-blue-300 hover:text-blue-200"
-                    >
-                      GitHub Repo →
-                    </a>
+                    <span />
                   )}
 
                   <button
@@ -326,25 +329,27 @@ function ProjectModal({ project, onClose }) {
               )}
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
-              {project.repo === "#" ? (
-                <span className="text-sm font-semibold text-yellow-400">
-                  🚧 Coming Soon
-                </span>
-              ) : (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition shadow-lg shadow-blue-500/20"
-                >
-                  GitHub Repository
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              )}
-            </div>
+            {project.repo && (
+              <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+                {project.repo === "#" ? (
+                  <span className="text-sm font-semibold text-yellow-400">
+                    🚧 Coming Soon
+                  </span>
+                ) : (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition shadow-lg shadow-blue-500/20"
+                  >
+                    GitHub Repository
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
         </div>
